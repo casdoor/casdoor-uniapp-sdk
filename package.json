@@ -1,0 +1,12 @@
+{
+  "name": "casdoor-uniapp-sdk",
+  "version": "1.0.2",
+  "description": "Uniapp client SDK for Casdoor",
+  "main": "index.js",
+  "author": "Lee",
+  "license": "Apache-2.0",
+  "repository": {
+      "type": "git",
+      "url": "https://github.com/Beacontownfc/casdoor-uniapp-sdk.git"
+    }
+}
