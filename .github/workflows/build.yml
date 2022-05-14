@@ -14,12 +14,6 @@ jobs:
 
       - run: yarn install
 
-      - run: yarn test
-
-      - run: yarn coverage
-
-      - run: yarn build
-
       - name: Codecov
         uses: codecov/codecov-action@v1
         with:
