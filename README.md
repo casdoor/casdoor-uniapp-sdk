@@ -51,13 +51,13 @@ example:
 // in pages/index/index.vue
 <script>
 export default {
-		data(){
-			return {loginUrl: ''}
-		},
-		methods:{
-			login(){				
-				this.loginUrl = this.getSigninUrl("https://door.casbin.com");	
-			}
+	data(){
+		return {loginUrl: ''}
+	},
+	methods:{
+		login(){				
+			this.loginUrl = this.getSigninUrl();	
 		}
+	}
 </script>
 ```

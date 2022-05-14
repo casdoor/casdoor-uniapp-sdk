@@ -44,8 +44,8 @@ class Sdk {
 	        }
 	}
 
-    getSigninUrl(origin){
-        const redirectUri = `${origin}${this.config.redirectPath}`;
+    getSigninUrl(){
+        const redirectUri = `${window.location.origin}${this.config.redirectPath}`;
         const scope = "read";
         const state = this.config.appName;
         return `${this.config.serverUrl.trim()}/login/oauth/authorize?client_id=${this.config.clientId}&response_type=code&redirect_uri=${encodeURIComponent(redirectUri)}&scope=${scope}&state=${state}`;

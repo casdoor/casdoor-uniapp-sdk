@@ -4,8 +4,8 @@ export default{
 	install(app, options) {
 	    let CasdoorSDK = new Sdk(options);
 	
-		app.prototype.getSigninUrl = (origin) =>{
-			return CasdoorSDK.getSigninUrl(origin);
+		app.prototype.getSigninUrl = () =>{
+			return CasdoorSDK.getSigninUrl();
 		}
 		
 		app.prototype.getSignupUrl = (enablePassword) =>{
