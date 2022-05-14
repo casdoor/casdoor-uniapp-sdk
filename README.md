@@ -105,15 +105,16 @@ example:
 // in pages/index/index.vue
 <script>
 export default {
-	data(){
-		return {loginUrl: ''}
-	},
-	methods:{
-		login(){				
-			uni.navigateTo({
-				url: `./webpage?path=${this.getSigninUrl()}`
-			})
-		}
-	}
+ data(){
+  return {loginUrl: ''}
+ },
+ methods:{
+  login(){				
+   uni.navigateTo({
+    url: `./webpage?path=${this.getSigninUrl()}`
+	})
+   }
+ }
+}
 </script>
 ```
