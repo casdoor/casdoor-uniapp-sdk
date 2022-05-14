@@ -5,5 +5,8 @@
   "main": "index.js",
   "repository": "https://github.com/casdoor/casdoor-uniapp-sdk.git",
   "author": "Fancong Li <1963697267@qq.com>",
-  "license": "Apache-2.0"
+  "license": "Apache-2.0",
+  "dependencies": {
+    "casdoor-js-sdk": "^0.2.7"
+  }
 }

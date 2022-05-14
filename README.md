@@ -1,6 +1,6 @@
 # casdoor-uniapp-sdk
 
-This is Casdoor's SDK for js will allow you to easily connect your application to the Casdoor authentication system
+This is Casdoor's SDK for uniapp will allow you to easily connect your application to the Casdoor authentication system
 without having to implement it from scratch.
 
 Casdoor SDK is very simple to use. We will show you the steps below.
@@ -32,10 +32,48 @@ Initialization requires 5 parameters, which are all string type:
 
 install:
 
+For uniapp-vue3:
 ```javascript
 // in main.js
-import Vue from 'vue'
+import App from './App'
 
+// #ifndef VUE3
+import Vue from 'vue'
+Vue.config.productionTip = false
+App.mpType = 'app'
+const app = new Vue({
+    ...App
+})
+app.$mount()
+// #endif
+
+// #ifdef VUE3
+import { createSSRApp } from 'vue'
+import Sdk from './casdoor-uniapp-sdk.js'
+export function createApp() {
+  const app = createSSRApp(App)
+  app.use(Sdk, {
+  serverUrl: "https://door.casbin.com",
+  clientId: "014ae4bd048734ca2dea",
+  organizationName: "casbin",
+  appName: "app-casnode",
+  redirectPath: "/callback",
+})
+  return {
+    app
+  }
+}
+// #endif
+```
+
+For uniapp-vue2:
+```javascript
+import App from './App'
+
+// #ifndef VUE3
+import Vue from 'vue'
+import Sdk from './casdoor-uniapp-sdk.js'
+Vue.config.productionTip = false
 Vue.use(Sdk, {
   serverUrl: "https://door.casbin.com",
   clientId: "014ae4bd048734ca2dea",
@@ -43,6 +81,22 @@ Vue.use(Sdk, {
   appName: "app-casnode",
   redirectPath: "/callback",
 })
+App.mpType = 'app'
+const app = new Vue({
+    ...App
+})
+app.$mount()
+// #endif
+
+// #ifdef VUE3
+import { createSSRApp } from 'vue'
+export function createApp() {
+  const app = createSSRApp(App)
+  return {
+    app
+  }
+}
+// #endif
 ```
 
 example:
@@ -56,7 +110,9 @@ export default {
 	},
 	methods:{
 		login(){				
-			this.loginUrl = this.getSigninUrl();	
+			uni.navigateTo({
+				url: `./webpage?path=${this.getSigninUrl()}`
+			})
 		}
 	}
 </script>
