@@ -18,7 +18,6 @@ export default {
   install(app, params) {
     let CasdoorSDK = new Sdk(params);
     if (app.version.charAt(0) === '2') {
-
       app.prototype.getSigninUrl = () => {
         return CasdoorSDK.getSigninUrl();
       }
