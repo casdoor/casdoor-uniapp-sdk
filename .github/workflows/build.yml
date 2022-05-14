@@ -14,7 +14,11 @@ jobs:
 
       - run: yarn install
 
-      - run: webpack
+      - run: yarn test
+
+      - run: yarn coverage
+
+      - run: yarn build
 
       - name: Codecov
         uses: codecov/codecov-action@v1
