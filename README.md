@@ -1,13 +1,23 @@
 # casdoor-uniapp-sdk
 
-This is Casdoor's SDK for js will allow you to easily connect your application to the Casdoor authentication system
+[![NPM version][npm-image]][npm-url]
+[![NPM download][download-image]][download-url]
+[![codebeat badge](https://codebeat.co/badges/6f2ad052-7fc8-42e1-b40f-0ca2648530c2)](https://codebeat.co/projects/github-com-casdoor-casdoor-uniapp-sdk-master)
+[![GitHub Actions](https://github.com/casdoor/casdoor-uniapp-sdk/actions/workflows/release.yml/badge.svg)](https://github.com/casdoor/casdoor-uniapp-sdk/actions/workflows/release.yml)
+[![GitHub Actions](https://github.com/casdoor/casdoor-uniapp-sdk/actions/workflows/build.yml/badge.svg)](https://github.com/casdoor/casdoor-uniapp-sdk/actions/workflows/build.yml)
+[![Coverage Status](https://codecov.io/gh/casdoor/casdoor-uniapp-sdk/branch/master/graph/badge.svg)](https://codecov.io/gh/casdoor/casdoor-uniapp-sdk)
+[![Release](https://img.shields.io/github/release/casdoor/casdoor-uniapp-sdk.svg)](https://github.com/casdoor/casdoor-uniapp-sdk/releases/latest)
+[![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/casbin/casdoor)
+
+[npm-image]: https://img.shields.io/npm/v/casdoor-uniapp-sdk.svg?style=flat-square
+[npm-url]: https://npmjs.com/package/casdoor-uniapp-sdk
+[download-image]: https://img.shields.io/npm/dm/casdoor-uniapp-sdk.svg?style=flat-square
+[download-url]: https://npmjs.com/package/casdoor-uniapp-sdk
+
+This is Casdoor's SDK for uniapp will allow you to easily connect your application to the Casdoor authentication system
 without having to implement it from scratch.
 
-Casdoor SDK is very simple to use. We will show you the steps below.
-
-> Noted that this sdk has been applied to casnode, if you still don’t know how to use it after reading README.md, you can refer to it
-
-## Installation
+## Install
 
 ~~~shell script
 # NPM
@@ -17,7 +27,7 @@ npm i casdoor-uniapp-sdk
 yarn add casdoor-uniapp-sdk
 ~~~
 
-## Init SDK
+## Parameters
 
 Initialization requires 5 parameters, which are all string type:
 
@@ -30,12 +40,52 @@ Initialization requires 5 parameters, which are all string type:
 | redirectPath     | No  | the path of the redirect URL for your Casdoor application, will be `/callback` if not provided              |
 
 
-install:
+## Guide
+
+### For uniapp-vue3:
 
 ```javascript
 // in main.js
-import Vue from 'vue'
+import App from './App'
 
+// #ifndef VUE3
+import Vue from 'vue'
+Vue.config.productionTip = false
+App.mpType = 'app'
+const app = new Vue({
+    ...App
+})
+app.$mount()
+// #endif
+
+// #ifdef VUE3
+import { createSSRApp } from 'vue'
+import Sdk from './casdoor-uniapp-sdk.js'
+export function createApp() {
+  const app = createSSRApp(App)
+  app.use(Sdk, {
+  serverUrl: "https://door.casbin.com",
+  clientId: "014ae4bd048734ca2dea",
+  organizationName: "casbin",
+  appName: "app-casnode",
+  redirectPath: "/callback",
+})
+  return {
+    app
+  }
+}
+// #endif
+```
+
+### For uniapp-vue2:
+
+```javascript
+import App from './App'
+
+// #ifndef VUE3
+import Vue from 'vue'
+import Sdk from './casdoor-uniapp-sdk.js'
+Vue.config.productionTip = false
 Vue.use(Sdk, {
   serverUrl: "https://door.casbin.com",
   clientId: "014ae4bd048734ca2dea",
@@ -43,21 +93,37 @@ Vue.use(Sdk, {
   appName: "app-casnode",
   redirectPath: "/callback",
 })
+App.mpType = 'app'
+const app = new Vue({
+    ...App
+})
+app.$mount()
+// #endif
+
+// #ifdef VUE3
+import { createSSRApp } from 'vue'
+export function createApp() {
+  const app = createSSRApp(App)
+  return {
+    app
+  }
+}
+// #endif
 ```
 
-example:
+## Example
 
 ```vue
 // in pages/index/index.vue
 <script>
 export default {
-	data(){
-		return {loginUrl: ''}
-	},
-	methods:{
-		login(){				
-			this.loginUrl = this.getSigninUrl();	
-		}
-	}
+ methods:{
+  login(){				
+   uni.navigateTo({
+    url: `./webpage?path=${this.getSigninUrl()}`
+   })
+  }
+ }
+}
 </script>
 ```
