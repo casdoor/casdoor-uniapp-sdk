@@ -8,5 +8,6 @@
   "license": "Apache-2.0",
   "dependencies": {
     "casdoor-js-sdk": "^0.2.7"
-  }
+  },
+  "private": false
 }

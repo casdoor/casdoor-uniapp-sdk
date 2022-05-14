@@ -1,8 +1,8 @@
 import Sdk from "casdoor-js-sdk";
 
 export default{
-	install(app, options) {
-		let CasdoorSDK = new Sdk(options);
+	install(app, params) {
+		let CasdoorSDK = new Sdk(params);
 		if(app.version.charAt(0) === '2'){
 	
 			app.prototype.getSigninUrl = () =>{
