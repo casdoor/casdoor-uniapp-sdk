@@ -4,22 +4,14 @@ on:
     branches:
       - master
 jobs:
-  release:
-    name: Release
-    runs-on: ubuntu-18.04
+  semantic-release:
+    runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
-      - name: Setup Node.js
-        uses: actions/setup-node@v1
-        with:
-          node-version: 16
-      - name: Install dependencies
-        run: npm ci
-      - name: Release
+      - uses: actions/checkout@v2
+
+      - name: Run semantic-release
+        if: github.event_name == 'push' && github.repository == 'casdoor/casdoor-uniapp-sdk'
+        run: yarn install && yarn semantic-release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-        run: npx semantic-release
