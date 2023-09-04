@@ -31,13 +31,13 @@ yarn add casdoor-uniapp-sdk
 
 Initialization requires 5 parameters, which are all string type:
 
-| Name (in order)  | Must | Description                                         |
-| ---------------- | ---- | --------------------------------------------------- |
-| serverUrl  | Yes  | your Casdoor server URL               |
-| clientId         | Yes  | the Client ID of your Casdoor application                        |
-| appName           | Yes  | the name of your Casdoor application |
-| organizationName     | Yes  | the name of the Casdoor organization connected with your Casdoor application                    |
-| redirectPath     | No  | the path of the redirect URL for your Casdoor application, will be `/callback` if not provided              |
+| Name (in order)  | Must | Description                                                                                    |
+|------------------|------|------------------------------------------------------------------------------------------------|
+| serverUrl        | Yes  | your Casdoor server URL                                                                        |
+| clientId         | Yes  | the Client ID of your Casdoor application                                                      |
+| appName          | Yes  | the name of your Casdoor application                                                           |
+| organizationName | Yes  | the name of the Casdoor organization connected with your Casdoor application                   |
+| redirectPath     | No   | the path of the redirect URL for your Casdoor application, will be `/callback` if not provided |
 
 
 ## Guide
