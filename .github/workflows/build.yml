@@ -19,7 +19,7 @@ jobs:
 
       - run: yarn test
 
-      - run: yarn coverage
+      - run: mkdir -p coverage && yarn coverage
         if: matrix.node == '24'
 
       - name: Codecov
