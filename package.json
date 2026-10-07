@@ -22,7 +22,10 @@
     "coverage": "node --test --experimental-test-coverage --test-coverage-include=src/** --test-coverage-lines=95 --test-reporter=spec --test-reporter=lcov --test-reporter-destination=stdout --test-reporter-destination=coverage/lcov.info test/*.test.js",
     "semantic-release": "semantic-release"
   },
-  "repository": "https://github.com/casdoor/casdoor-uniapp-sdk.git",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/casdoor/casdoor-uniapp-sdk.git"
+  },
   "keywords": [
     "casdoor",
     "uni-app",
