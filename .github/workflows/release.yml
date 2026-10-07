@@ -20,6 +20,6 @@ jobs:
 
       - name: Run semantic-release
         if: github.event_name == 'push' && github.repository == 'casdoor/casdoor-uniapp-sdk'
-        run: yarn install && yarn semantic-release
+        run: yarn install --frozen-lockfile && yarn test && yarn semantic-release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

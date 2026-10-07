@@ -1,18 +1,43 @@
 {
   "name": "casdoor-uniapp-sdk",
   "version": "1.0.0",
-  "description": "uni-app client SDK for Casdoor",
-  "main": "index.js",
+  "description": "uni-app client SDK for Casdoor: OAuth 2.0 authorization code flow with PKCE on H5, App and WeChat mini programs",
+  "type": "module",
+  "main": "src/index.js",
+  "module": "src/index.js",
+  "types": "index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./index.d.ts",
+      "default": "./src/index.js"
+    }
+  },
+  "files": [
+    "src",
+    "index.d.ts"
+  ],
+  "sideEffects": false,
   "scripts": {
+    "test": "node --test test/*.test.js",
+    "coverage": "node --test --experimental-test-coverage --test-coverage-include=src/** --test-coverage-lines=95 --test-reporter=spec --test-reporter=lcov --test-reporter-destination=stdout --test-reporter-destination=coverage/lcov.info test/*.test.js",
     "semantic-release": "semantic-release"
   },
   "repository": "https://github.com/casdoor/casdoor-uniapp-sdk.git",
+  "keywords": [
+    "casdoor",
+    "uni-app",
+    "uniapp",
+    "oauth",
+    "oidc",
+    "pkce",
+    "sso",
+    "wechat-miniprogram"
+  ],
   "author": "Fancong Li <1963697267@qq.com>",
   "license": "Apache-2.0",
-  "dependencies": {
-    "casdoor-js-sdk": "^0.2.7"
+  "engines": {
+    "node": ">=20"
   },
-  "private": false,
   "devDependencies": {
     "semantic-release": "^25.0.9"
   }

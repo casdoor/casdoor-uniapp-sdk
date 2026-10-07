@@ -3,18 +3,28 @@ name: Build
 on: [push, pull_request]
 
 jobs:
-  build:
-    name: SDK build
+  test:
+    name: Test on Node.js ${{ matrix.node }}
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node: ['20', '22', '24']
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: '24'
+          node-version: ${{ matrix.node }}
 
-      - run: yarn install
+      - run: yarn install --frozen-lockfile
+
+      - run: yarn test
+
+      - run: yarn coverage
+        if: matrix.node == '24'
 
       - name: Codecov
-        uses: codecov/codecov-action@v1
+        if: matrix.node == '24'
+        uses: codecov/codecov-action@v5
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
+          files: coverage/lcov.info
